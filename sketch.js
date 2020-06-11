@@ -11,7 +11,8 @@ var form, player, game;
 var cars, car1, car2, car3, car4;
 var tanker1_img,tanker2_img,tanker1,tanker2
 var track, car1_img, car2_img, car3_img, car4_img;
-
+var gun = [],gun1,gun2,gun1_img,gun2_img
+var bulletgroup,enemygroup,Egungroup
 function preload(){
   track = loadImage("../images/track.jpg");
   //car1_img = loadImage("../images/car1.png");
@@ -22,6 +23,9 @@ function preload(){
   tanker2_img = loadImage("../PNG/Hulls_Color_A/Hull_03.png")
   enemy_img = loadImage("../PNG/Hulls_Color_C/Hull_01.png")
   ground = loadImage("../images/ground.png");
+  gun1_img = loadImage("../PNG/Weapon_Color_A/Gun_01.png")
+  gun2_img = loadImage("../PNG/Weapon_Color_A/Gun_01.png")
+  
 }
 
 function setup(){
@@ -30,10 +34,14 @@ function setup(){
   game = new Game();
   game.getState();
   game.start();
+  bulletgroup = new Group();
+  enemygroup = new Group();
+  Egungroup=new Group();
 }
 
 
 function draw(){
+  background("blue")
   if(playerCount === 2){
     game.update(1);
   }
@@ -43,5 +51,11 @@ function draw(){
   }
   if(gameState === 2){
     game.end();
+  }
+}
+
+function keyPressed(){
+  if (keyCode===32){
+    game.bullets();
   }
 }
